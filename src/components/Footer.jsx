@@ -1,8 +1,38 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 
 const Footer = () => {
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const footerElement = document.getElementById("footer");
+      if (footerElement) {
+        const footerPosition = footerElement.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (footerPosition <= windowHeight) {
+          setShowScrollTopButton(true);
+        } else {
+          setShowScrollTopButton(false);
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
+  const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+    <footer id="footer" className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -128,6 +158,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Villa Agency. All rights reserved.</p>
@@ -141,7 +172,29 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        
       </div>
+      {/* Scroll to Top Button */}
+      {showScrollTopButton && (
+            <div
+              onClick={scrollToTop}
+              className="fixed bottom-4 right-4 bg-[#FF5A3C] p-4 rounded-full cursor-pointer shadow-lg hover:bg-[#FF5A3C]/90 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </div>
+)}
+
     </footer>
   )
 }

@@ -27,7 +27,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+      <section className="relative h-[700px] md:h-[630px] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={backgroundImages[currentImageIndex]}

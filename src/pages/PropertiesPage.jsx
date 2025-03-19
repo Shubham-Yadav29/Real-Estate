@@ -174,14 +174,7 @@ const PropertiesPage = () => {
                             <h2 className="text-2xl font-bold">Available Properties</h2>
                             <p className="text-gray-600">Showing {paginatedProperties.length} out of {filteredProperties.length} properties</p>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <span className="text-sm text-gray-600">Sort by:</span>
-                            <select className="p-2 border border-gray-300 rounded-lg bg-white text-sm w-40">
-                                <option value="newest">Newest</option>
-                                <option value="price-asc">Price (Low to High)</option>
-                                <option value="price-desc">Price (High to Low)</option>
-                            </select>
-                        </div>
+                    
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {paginatedProperties.map((property) => (

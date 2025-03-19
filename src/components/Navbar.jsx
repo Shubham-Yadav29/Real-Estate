@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 
@@ -31,7 +30,6 @@ const Navbar = () => {
     return location.pathname === path
   }
 
-
   const handleLinkClick = () => {
     window.scrollTo({
       top: 0,
@@ -50,22 +48,22 @@ const Navbar = () => {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className={`px-5 md:px-2 lg:px-5 rounded-md text-sm font-medium transition-colors gap-0 ${
-                isActive(link.href)
-                  ? "text-[#FF5A3C]"
-                  : isScrolled
-                  ? "text-gray-700 hover:text-[#FF5A3C]"
-                  : "text-white hover:text-[#FF5A3C]"
-              }`}
-              onClick={handleLinkClick} // Added this line to scroll to top on click
-            >
-              {link.name}
-            </Link>
-          ))}
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className={`px-5 md:px-2 lg:px-5 rounded-md text-sm font-medium transition-colors gap-0 ${
+                  isActive(link.href)
+                    ? "text-[#FF5A3C]"
+                    : isScrolled
+                    ? "text-gray-700 hover:text-[#FF5A3C]"
+                    : "text-white hover:text-[#FF5A3C]"
+                }`}
+                onClick={handleLinkClick} // Added this line to scroll to top on click
+              >
+                {link.name}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden md:flex items-center">
@@ -86,12 +84,13 @@ const Navbar = () => {
             </div>
             <Link
               to="/contact"
-          className="bg-[#FF5A3C] hover:bg-[#FF5A3C]/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+              className="bg-[#FF5A3C] hover:bg-[#FF5A3C]/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Schedule a Visit
             </Link>
           </div>
 
-          <button className="md:hidden text-[#FF5A3C]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button className="cursor-pointer md:hidden text-[#FF5A3C]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +126,7 @@ const Navbar = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white">
+        <div className="md:hidden bg-white ">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-2">
               {navLinks.map((link) => (
@@ -137,7 +136,10 @@ const Navbar = () => {
                   className={`px-4 py-2 rounded-md text-sm font-medium ${
                     isActive(link.href) ? "bg-[#FF5A3C]/10 text-[#FF5A3C]" : "text-gray-700 hover:bg-gray-100"
                   }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    handleLinkClick(); // Scroll to top on mobile menu link click
+                    setIsMobileMenuOpen(false); // Close the mobile menu after click
+                  }}
                 >
                   {link.name}
                 </Link>
@@ -159,8 +161,11 @@ const Navbar = () => {
                 </svg>
                 <span className="text-sm">+1 (234) 567-8900</span>
               </div>
-              <button className="w-full bg-[#FF5A3C] hover:bg-[#FF5A3C]/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+              <button className="cursor-pointer w-full bg-[#FF5A3C] hover:bg-[#FF5A3C]/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+              <Link
+              to="/contact" >
                 Schedule a Visit
+              </Link>
               </button>
             </div>
           </div>
@@ -171,4 +176,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-

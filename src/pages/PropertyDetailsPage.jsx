@@ -87,7 +87,7 @@ const PropertyDetailsPage = () => {
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Main Content */}
             <div className="lg:w-2/3">
-              <div className="flex justify-between items-center mb-8">
+              <div className="flex flex-col gap-6 sm:gap-0 sm:flex-row sm:justify-between sm:items-center  mb-8">
                 <div>
                   {property.featured && (
                     <div className="bg-[#FF5A3C] text-white text-xs font-semibold px-2 py-1 rounded mb-2 w-fit">
@@ -112,7 +112,7 @@ const PropertyDetailsPage = () => {
                     <span>{property.location}</span>
                   </div>
                 </div>
-                <div className="text-3xl font-bold text-[#FF5A3C]">{property.price}</div>
+                <div className="text-3xl font-bold text-[#FF5A3C] text-end">{property.price}</div>
               </div>
 
               {/* Gallery */}
